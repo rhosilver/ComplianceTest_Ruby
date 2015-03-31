@@ -1,5 +1,5 @@
 sdkversion: "4.1.0"
-name: "vpn_compliancetest_ruby"
+name: "compliancetest_ruby"
 version: "1.0"
 vendor: "rhomobile"
 build: "debug"
@@ -10,8 +10,8 @@ iphone:
   provisionprofile: 
   codesignidentity: "iPhone Developer"
   entitlements: ./production/Entitlements.plist
-  BundleIdentifier: "com.rhomobile.vpncompliancerubytest"
-  BundleURLScheme: "vpncompliancerubytest"
+  BundleIdentifier: "com.rhomobile.compliancerubytest"
+  BundleURLScheme: "compliancerubytest"
 wp8:
   productid: "da37e740-9d27-0131-ad03-0023241f0ea9"
 android:
