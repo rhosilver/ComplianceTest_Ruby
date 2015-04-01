@@ -19,18 +19,30 @@ android:
   ajax_api_bridge: false
   version: "4.2.2"
   capabilities:
+  extensions:
+    - barcode
+    - indicators
+    - mediaplayer
+    - audiocapture
+    - printing
+    - printing_zebra
+    - signature
+    - screenorientation
 wm:
   ajax_api_bridge: false
 #sdk: "MC3000c50b (ARMV4I)"
   sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
+  extensions:
+    - barcode
+    - indicators
+    - mediaplayer
+    - audiocapture
+    - printing
+    - printing_zebra
+    - signature
+    - screenorientation
 extensions:
-- indicators
-- mediaplayer
-- audiocapture
-- printing
-- printing_zebra
-- signature
-- screenorientation
+  - rhoconnect-client
 app_type: "rhoelements"
 capabilities:
 
