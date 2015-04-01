@@ -2,7 +2,7 @@ sdkversion: "4.1.0"
 name: "compliancetest_ruby"
 version: "1.0"
 vendor: "rhomobile"
-build: "debug"
+build: "release"
 applog: "rholog.txt"
 iphone:
   configuration: "Release"
@@ -46,7 +46,7 @@ extensions:
 app_type: "rhoelements"
 capabilities:
 
-rhohub:
-  url: "https://appstaging.rhohub.com/api/v1/"
-connection:
-  proxy: "http://wwwgate0.mot.com:1080"
+#rhohub:
+#  url: "https://appstaging.rhohub.com/api/v1/"
+#connection:
+#  proxy: "http://wwwgate0.mot.com:1080"
