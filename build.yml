@@ -1,6 +1,6 @@
 #sdkversion: "4.1.0"
 name: "compliancetest_ruby"
-version: 1.0
+version: "1.0"
 vendor: "rhomobile"
 build: "release"
 applog: "rholog.txt"
@@ -16,7 +16,7 @@ iphone:
 wp8:
   productid: "da37e740-9d27-0131-ad03-0023241f0ea9"
 android:
-  manifest_template: "AndroidManifest.erb"
+  manifest_template: AndroidManifest.erb
   ajax_api_bridge: false
   version: "4.2.2"
   extensions:
