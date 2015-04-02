@@ -19,6 +19,7 @@ android:
   manifest_template: AndroidManifest.erb
   ajax_api_bridge: false
   version: "4.2.2"
+  abis: [arm, x86]
   extensions:
     - barcode
     - cardreader
