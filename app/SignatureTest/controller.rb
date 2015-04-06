@@ -69,7 +69,7 @@ end
 #callback method for capture datauri
 def callbackDatauri
 	status = @params['status']
-	image = @params['imageUri']
+	image = @params['imageUri'].gsub(/(?=\W)/, '\\')
 	Rho::WebView.executeJavascript('callbackStatus("'+status+'")')
 	Rho::WebView.executeJavascript('callbackDataURI("'+image+'")')
 	return

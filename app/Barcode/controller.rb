@@ -151,7 +151,7 @@ class BarcodeController < Rho::RhoController
       end
     end
     options.code128 = @params['code128'] if @params['code128']
-    options.scanTimeout = @params['time'] if @params['time']
+    options.scanTimeout = @params['time'].to_i if @params['time']
     
     $scanner.enable(options)
     
@@ -175,7 +175,7 @@ class BarcodeController < Rho::RhoController
       end
     end
     options.code128 = @params['code128'] if @params['code128']
-    options.scanTimeout = @params['time'] if @params['time']
+    options.scanTimeout = @params['time'].to_i if @params['time']
       
     $scanner.enable(options, url_for(:action => :barcode_callback))
   end

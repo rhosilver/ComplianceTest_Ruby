@@ -11,6 +11,8 @@ def minimize
 end
   
 def restore
+  Rho::Application.minimize()
+  sleep 2
   Rho::Application.restore()
 end
   
