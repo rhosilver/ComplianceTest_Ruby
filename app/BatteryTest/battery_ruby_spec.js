@@ -26,6 +26,24 @@ describe("Battery Manual FD Tests", function () {
   	});          
   }
 
+  it("VT200-0701(A)|Call batteryStatus method and callback|", function () {
+      dispTestCaseRunning("VT200-0701 batteryStatus method with default properties");
+      dispExpectedResult("batteryStatus callback should get fire");
+      
+      _result.waitToRunTest();
+
+      runs(function () {
+        Ruby.call('BatteryTest','battery_status_default');
+      });
+
+      _result.waitForResponse();
+      
+      runs(function () {
+          Ruby.call('BatteryTest','stop_battery_status');
+      });
+
+    });
+
   if(!isAndroidPlatform())
   {
        

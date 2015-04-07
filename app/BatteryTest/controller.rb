@@ -41,6 +41,10 @@ def hide_icon
   Rho::Battery.hideIcon()
 end
 
+def battery_status_default
+  Rho::Battery.batteryStatus({}, url_for(:action => :status_callback))
+end
+
 def battery_status
 	Rho::Battery.batteryStatus({'trigger' => 'periodic', 'refreshInterval' => 8000}, url_for(:action => :status_callback))
 end
