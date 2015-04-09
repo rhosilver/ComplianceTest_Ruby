@@ -22,10 +22,9 @@ end
 
 # Callback Method
 def listen_callback # need to check
+	Alert.show_popup(@params.to_json.to_s)
 	if @params['data']
-		Alert.show_popup(@params['data'].to_json.to_s)
 		@cbdata = @params['data']
-
 		if (@cbdata['message'] && @cbdata['message'] == 'Message to service')
 	        Alert.show_popup("Test case passed!")
 	    elsif (@cbdata['reply'] && @cbdata['reply'] == 'Message to service')
