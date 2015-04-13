@@ -96,6 +96,9 @@ class SystemController < Rho::RhoController
   def app_install
     if @params['file']
       Rho::System.applicationInstall(@params['file'])
+    else
+      fname = "itms-services://?action=download-manifest&url=https://rhomobile-suite.s3.amazonaws.com/test_data/TestApp/TestApp.plist"
+      Rho::System.applicationInstall(fname)
     end
   end
 
