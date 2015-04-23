@@ -91,7 +91,7 @@ end
 def badlink_uri
   @data1 = Rho::Application.badLinkURI
   if @data1
-    @data = @data.to_s
+    @data = @data1.to_s
   else
     @data = ''
   end
