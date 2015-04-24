@@ -55,6 +55,7 @@ describe("Signature Manual Test", function () {
             callbackImgpath(nulldata);
             callbackDataURI(nulldata);
             callbackImg(nulldata);
+            document.getElementById('sigdiv').innerHTML = '<img src="" id="capturedImage">';
         });
 
         afterEach(function () {
@@ -335,14 +336,14 @@ describe("Signature Manual Test", function () {
 
                 setTimeout(function() {
                     timeout = true;
-                }, 5000);
+                }, 7000);
             });
 
             waitsFor(function(){
                 if(timeout == true){
                     return true;
                 }
-            }, 'Wait for 1 sec ajax call to happen', 6000);
+            }, 'Wait for 1 sec ajax call to happen', 8000);
 
             runs(function () {
                 timeout = false;

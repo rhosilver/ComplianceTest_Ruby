@@ -119,6 +119,7 @@ def signature_set_allprops
     Rho::Signature.width = 200
     Rho::Signature.outputFormat = 'dataUri'
     Rho::Signature.border = true
+    sleep 3
     Rho::Signature.show()
 end
 
