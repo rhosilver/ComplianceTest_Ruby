@@ -85,8 +85,9 @@ def signature_fullscr_optImage
 	Rho::Signature.bgColor = '#FF0000'
     Rho::Signature.penColor = '#0000FF'
     Rho::Signature.penWidth = 3
+    Alert.show_popup(Rho::Signature::OUTPUT_FORMAT_IMAGE)
     fileName = Rho::RhoFile.join(Rho::Application.databaseBlobFolder, @params['vtid'])
-    Rho::Signature.takeFullScreen({'compressionFormat' => @params['const'], 'fileName' => fileName, 'outputFormat' => Rho::Signature::OUTPUT_FORMAT_IMAGE}, url_for(:action => :callbackImage))
+    Rho::Signature.takeFullScreen({'compressionFormat' => @params['const'], 'fileName' => fileName}, url_for(:action => :callbackImage))
 end
 
 def signature_fullscr_optUri
@@ -108,8 +109,7 @@ def signature_show_opt
 end
 
 def signature_set_allprops
-	fileName = Rho::RhoFile.join(Rho::Application.databaseBlobFolder, @params['vtid'])
-	Rho::Signature.fileName = fileName
+	Rho::Signature.fileName = Rho::RhoFile.join(Rho::Application.databaseBlobFolder, @params['vtid'])
 	Rho::Signature.bgColor = '#00FF00'
     Rho::Signature.penColor = '#FF800000'
     Rho::Signature.penWidth = 5
@@ -119,7 +119,6 @@ def signature_set_allprops
     Rho::Signature.width = 200
     Rho::Signature.outputFormat = 'dataUri'
     Rho::Signature.border = true
-    sleep 3
     Rho::Signature.show()
 end
 
@@ -133,12 +132,10 @@ end
 
 def signature_hide
 	Rho::Signature.hide()
-	return
 end
 
 def signature_clear
 	Rho::Signature.clear()
-	return
 end
 
 
