@@ -204,14 +204,14 @@ describe("Signature Manual Test", function () {
 
                 setTimeout(function() {
                     timeout = true;
-                }, 9000);
+                }, 7000);
             });
 
             waitsFor(function(){
                 if(timeout == true){
                     return true;
                 }
-            }, 'Wait for 1 sec ajax call to happen', 10000);
+            }, 'Wait for 1 sec ajax call to happen', 8000);
 
             runs(function () {
                 timeout = false;
@@ -219,14 +219,14 @@ describe("Signature Manual Test", function () {
 
                 setTimeout(function() {
                     timeout = true;
-                }, 5000);
+                }, 10000);
             });
 
             waitsFor(function(){
                 if(timeout == true){
                     return true;
                 }
-            }, 'Wait for 1 sec ajax call to happen', 6000);
+            }, 'Wait for 1 sec ajax call to happen', 11000);
             
             runs(function () {
                 timeout = false;
@@ -234,14 +234,14 @@ describe("Signature Manual Test", function () {
 
                 setTimeout(function() {
                     timeout = true;
-                }, 5000);
+                }, 14000);
             });
 
             waitsFor(function(){
                 if(timeout == true){
                     return true;
                 }
-            }, 'Wait for 1 sec ajax call to happen', 6000);
+            }, 'Wait for 1 sec ajax call to happen', 15000);
 
             runs(function () {
                 Ruby.call('SignatureTest','signature_hide');
@@ -351,14 +351,14 @@ describe("Signature Manual Test", function () {
 
                 setTimeout(function() {
                     timeout = true;
-                }, 5000);
+                }, 10000);
             });
 
             waitsFor(function(){
                 if(timeout == true){
                     return true;
                 }
-            }, 'Wait for 1 sec ajax call to happen', 6000);
+            }, 'Wait for 1 sec ajax call to happen', 11000);
 
             runs(function () {
                 Ruby.call('SignatureTest','signature_hide');
@@ -401,14 +401,14 @@ describe("Signature Manual Test", function () {
                     
                     setTimeout(function() {
                         timeout = true;
-                    }, 5000);
+                    }, 10000);
                 });
 
                 waitsFor(function(){
                     if(timeout == true){
                         return true;
                     }
-                }, 'Wait for 1 sec ajax call to happen', 6000);
+                }, 'Wait for 1 sec ajax call to happen', 11000);
 
                 runs(function () {
                     Ruby.call('SignatureTest','signature_hide');
