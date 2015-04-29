@@ -47,10 +47,15 @@ class BarcodeController < Rho::RhoController
       @obj_array = @params.values[1]
       
       @scanners = ""
-      @obj_array.each do |obj|
-        @scanners += '<br/>' + obj.scannerType
-      end
       
+      if Rho::System.platform == 'APPLE'
+        @scanners = @obj_array.length.to_s + ' scanner objects enumerated'
+      else
+        @obj_array.each do |obj|
+          @scanners += '<br/>' + obj.scannerType
+        end
+      end
+
       Rho::WebView.executeJavascript("document.getElementById('verificationResult').innerHTML= '#{@scanners}'")
       Rho::WebView.executeJavascript("document.getElementById('verificationResult').style.display='block'")
     else
@@ -67,7 +72,6 @@ class BarcodeController < Rho::RhoController
     Rho::WebView.executeJavascript("document.getElementById('verificationResult').innerHTML= '#{@result}'")
     Rho::WebView.executeJavascript("document.getElementById('verificationResult').style.display='block'")
   end
-  
   
   # test methods
   
@@ -182,6 +186,8 @@ class BarcodeController < Rho::RhoController
     options['code128'] = @params['code128'] if @params['code128']
     options['scanTimeout'] = @params['time'].to_i if @params['time']
       
+    Alert.show_popup(options['picklistMode'])
+
     $scanner.enable(options, url_for(:action => :barcode_callback))
   end
 
