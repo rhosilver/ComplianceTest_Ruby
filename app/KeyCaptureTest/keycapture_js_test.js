@@ -7,7 +7,6 @@ function callbackdatafunc(data)
 {
 	document.getElementById("clbkDatadiv").innerHTML = data;
 }
-
 var hardwareKeysTest = {};
 
 if (isAndroidPlatform())

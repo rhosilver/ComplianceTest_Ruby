@@ -36,6 +36,22 @@ def capturekey
 	end
 end
 
+def capturekey_method
+	if @params['truth'] 
+		if @params['call']
+			Rho::KeyCapture.captureKey(true, @params['keystring'], url_for(:action => :capturekey_callback_method))
+		else
+			Rho::KeyCapture.captureKey(true, @params['keystring'])
+		end
+	else
+		if @params['call']
+			Rho::KeyCapture.captureKey(false, @params['keystring'], url_for(:action => :capturekey_callback_method))
+		else
+			Rho::KeyCapture.captureKey(false, @params['keystring'])
+		end
+	end
+end
+
 def capturetrigger
 	if @params['call']
 		Rho::KeyCapture.captureTrigger(url_for(:action => :trigger_callback))
