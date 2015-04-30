@@ -43,7 +43,8 @@ class BarcodeController < Rho::RhoController
   end
 
   def barcode_callback_print
-    Alert.show_popup(@params.to_json.to_s)
+    Alert.show_popup(@params.values[1].to_json.to_s)
+    
     if @params
       @obj_array = @params.values[1]
       
