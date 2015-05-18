@@ -198,7 +198,7 @@ describe('Printing Generic', function() {
             
             setTimeout(function() {
                 timeout = true;
-            }, 5000);
+            }, 10000);
             
         });
 
@@ -206,7 +206,7 @@ describe('Printing Generic', function() {
             if(timeout == true){
                 return true;
             }
-        }, 'Wait for 10msec ajax call to happen', 10000);
+        }, 'Wait for 10msec ajax call to happen', 12000);
 
         runs(function() {
             displayResult("Output: ", Ruby.getReturnedValue()+"<br/>");
@@ -305,7 +305,7 @@ describe('Printing Generic', function() {
 			doConnect();
         });
 
-        it('Search printer method with callback', function() {
+        xit('Search printer method with callback', function() {
             dispTestCaseRunning("search printer method ");
             dispExpectedResult("should search and display printer id");
             _result.waitToRunTest();
