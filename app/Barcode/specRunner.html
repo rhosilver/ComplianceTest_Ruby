@@ -37,11 +37,15 @@
 	<!-- include Helper files here... -->
     <script type="text/javascript" src="../helpers/specHelpers.js"></script>
 
+    <script type="text/javascript">
+        var scantype;
+        var scannerName = '';
+    </script>
+
 	<!-- include spec files here... -->
 	<script type="text/javascript" src="./barcode_js_spec.js"></script>
 
 	<script type="text/javascript">
-
     (function () {
         var jasmineEnv = jasmine.getEnv();
         jasmineEnv.updateInterval = 1000;
@@ -83,7 +87,7 @@
 	</div><br/>
     <b>Available scanners: (select any from the drop down) </b>
     <div>
-    	<select id="scanner_type"></select>
+    	<select id="scanner_type" onchange="scantype = getSelectedScannerType();"></select>
     </div><br/>
     <b>Test Running: </b><div id="objective"></div>
     <br/>
@@ -109,8 +113,8 @@
     $('#fail').hide();
     $('#oldpass').hide();
     $('#oldfail').hide();
-    $('#runtest').hide();
-    
+    $('#runtest').hide(); 
+
     (function(){
 		$('#scanner_type').empty();
 	  	var scanners = Rho.Barcode.enumerate();

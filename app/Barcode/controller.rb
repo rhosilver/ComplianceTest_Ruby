@@ -10,7 +10,7 @@ class BarcodeController < Rho::RhoController
   # set scanner for tests 
   def set_scanner
     @obj = Rho::Barcode.enumerate
-
+    Alert.show_popup(@params.to_json.to_s)
     if @params['scanner_type']
       @obj.each do |scannerObj|
         $scanner = scannerObj if scannerObj.scannerType == @params['scanner_type']
@@ -96,22 +96,22 @@ class BarcodeController < Rho::RhoController
   end
   
   def barcode_take_timeout
-    set_scanner
+    set_scanner @params
     $scanner.take({'scanTimeout' => 10000},url_for(:action => :barcode_callback))
   end
 
   def barcode_take_disable
-    set_scanner
+    set_scanner @params
     $scanner.take({'allDecoders' => false,'code128' => true,'scanTimeout' => 10000}, url_for(:action => :barcode_callback))
   end 
   
   def barcode_props
-    set_scanner
+    set_scanner @params
     $scanner.getAllProperties(url_for(:action => :barcode_callback))
   end
 
   def barcode_props_withoutcb
-    set_scanner
+    set_scanner @params
     data = $scanner.getAllProperties()
     @data = data.to_json
     Rho::WebView.executeJavascript("document.getElementById('verificationResult').innerHTML= JSON.stringify(#{@data})")
@@ -119,12 +119,12 @@ class BarcodeController < Rho::RhoController
   end
   
   def barcode_supportedprops
-    set_scanner
+    set_scanner @params
     $scanner.getSupportedProperties(url_for(:action => :barcode_callback))
   end  
 
   def barcode_supportedprops_withoutcb
-    set_scanner
+    set_scanner @params
     data = $scanner.getSupportedProperties()
     @data = data.to_json
     Rho::WebView.executeJavascript("document.getElementById('verificationResult').innerHTML= JSON.stringify(#{@data})")
@@ -132,12 +132,12 @@ class BarcodeController < Rho::RhoController
   end  
   
   def barcode_scannertype
-    set_scanner
+    set_scanner @params
     $scanner.getProperties(['scannerType'], url_for(:action => :barcode_callback))
   end
   
   def barcode_scannertype_withoutcb
-    set_scanner
+    set_scanner @params
     data = $scanner.getProperties(['scannerType'])
     @data = data.to_json
     Rho::WebView.executeJavascript("document.getElementById('verificationResult').innerHTML= JSON.stringify(#{@data})")
@@ -145,7 +145,7 @@ class BarcodeController < Rho::RhoController
   end
   
   def scanner_enable_withoutcb
-    set_scanner
+    set_scanner @params
     options = {}
         
     if @params['picklist'] && @params['picklist'] == true && $scanner.friendlyName == "2D Imager"
@@ -169,7 +169,7 @@ class BarcodeController < Rho::RhoController
   end
   
   def scanner_enable
-    set_scanner
+    set_scanner @params
     options = {}
     
     if @params['picklist'] && @params['picklist'] == true && $scanner.friendlyName == "2D Imager"
@@ -192,23 +192,23 @@ class BarcodeController < Rho::RhoController
   end
 
   def scanner_disable
-    set_scanner
+    set_scanner @params
     $scanner.disable()
   end
   
   def barcode_start
-    set_scanner
+    set_scanner @params
     $scanner.scanTimeout = 10000
     $scanner.start()
   end
 
   def barcode_stop
-    set_scanner
+    set_scanner @params
     $scanner.stop()
   end
   
   def barcode_setdefault
-    set_scanner
+    set_scanner @params
     Rho::Barcode.setDefault($scanner)
   end
 
@@ -219,12 +219,12 @@ class BarcodeController < Rho::RhoController
   end  
     
   def barcode_setproperty
-    set_scanner
+    set_scanner @params
     $scanner.setProperty(@params['attr'] => @params['val'])
   end
 
   def barcode_decode
-    set_scanner
+    set_scanner @params
     $scanner.decodeSound = @params['file']
   end
 

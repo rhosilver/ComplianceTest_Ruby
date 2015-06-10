@@ -30,18 +30,18 @@ describe("Barcode Manual Test", function() {
 	//var enumData = Rho.Barcode.enumerate();
 	var enableFlag = false;
 	var isAndroid = false;
-	var scannerName = '';
-	
+    // using friendlyName instead of scannerType as cannot get later's value without enabling the scanner in WM/CE   
+    var getSelectedScannerType = function(){
+        scannerName = document.getElementById("scanner_type").value
+        return "scanner_name="+ scannerName;
+    }
+    window.onload = function() {
+    	scantype = getSelectedScannerType();
+    }
 	if(Rho.System.platform == 'ANDROID')
 	{
 		ENABLE8K = 0; ENABLE1K = 0;
 		isAndroid = true;
-	}
-	
-	// using friendlyName instead of scannerType as cannot get later's value without enabling the scanner in WM/CE	 
-	var getSelectedScannerType = function(){
-		scannerName = document.getElementById("scanner_type").value
-		return "scanner_name="+ scannerName;
 	}
 		
 	beforeEach(function() {
@@ -69,16 +69,16 @@ describe("Barcode Manual Test", function() {
 		}, '5sec wait to enumerate Scanner', 5000);
 		
 		_result.waitForResponse();
-	});		
+	});
 			
 
 	describe("Barcode Test with selected scannerType" , function() {
-			
+
 		if (Rho.System.isSymbolDevice == true) 
 		{
-			it("VT200-0591 | Enable with callback as function | " + scannerName , function() {
+			it("VT200-0591 | Enable with callback as function | " + scantype , function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("Scan Barcode code128 with " + scannerName);
+				dispTestCaseRunning("Scan Barcode code128 with " + scantype);
 				dispExpectedResult("Is returned decoded hash displayed correctly with all data?");
 				
 				_result.waitToRunTest();
@@ -98,9 +98,9 @@ describe("Barcode Manual Test", function() {
 				_result.waitForResponse();
 			});
 	
-			it("VT200-0592 | Enable with alldecoders enabled and callback as function URL | " + scannerName, function() {
+			it("VT200-0592 | Enable with alldecoders enabled and callback as function URL | " + scantype, function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("Scan code93 and MSI barcode with " + scannerName);
+				dispTestCaseRunning("Scan code93 and MSI barcode with " + scantype);
 				dispExpectedResult("Is decoded data comes after scanning code93 and MSI?");
 				
 				_result.waitToRunTest();
@@ -171,9 +171,9 @@ describe("Barcode Manual Test", function() {
 	
 		}
 	
-			it("VT200-0596| call setDefault with " + scannerName + "and take |", function() {
+			it("VT200-0596| call setDefault with " + scantype + "and take |", function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("Take method wait for scanner beam or viewfinder to come automatically without pressing hadrware trigger " + scannerName + " Scan code 128 barcode");
+				dispTestCaseRunning("Take method wait for scanner beam or viewfinder to come automatically without pressing hadrware trigger " + scantype + " Scan code 128 barcode");
 				dispExpectedResult("code128 barcode should decode and retrun value should be decoded data and status");
 				_result.waitToRunTest();
 				
@@ -244,9 +244,9 @@ describe("Barcode Manual Test", function() {
 				});
 			});
 
-			it("VT200-0597 | take with picklist, scanTimeout 10000 and callback |"+ scannerName, function() {
+			it("VT200-0597 | take with picklist, scanTimeout 10000 and callback |"+ scantype, function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("Wait for scanner to start and check for picklist as  with " + scannerName);
+				dispTestCaseRunning("Wait for scanner to start and check for picklist as  with " + scantype);
 				dispExpectedResult("only the barcode in the center of the image is decoded for picklistMode as ");
 				
 				_result.waitToRunTest();
@@ -262,9 +262,9 @@ describe("Barcode Manual Test", function() {
 				_result.waitForResponse();
 			});
 
-			it("VT200-0598 | Take with alldecoders disabled, code128 as enabled with callback as function URL |"+ scannerName, function() {
+			it("VT200-0598 | Take with alldecoders disabled, code128 as enabled with callback as function URL |"+ scantype, function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("scan code39 and then code128 with" + scannerName);
+				dispTestCaseRunning("scan code39 and then code128 with" + scantype);
 				dispExpectedResult("Only code128 should be decoded");
 				
 				_result.waitToRunTest();
@@ -291,7 +291,7 @@ describe("Barcode Manual Test", function() {
 	
 			if (Rho.System.isSymbolDevice == true) 
 			{
-				it("VT200-0600 | autotenter true with setproperty |"+ scannerName, function() {
+				it("VT200-0600 | autotenter true with setproperty |"+ scantype, function() {
 					displayObjective(jasmine.getEnv().currentSpec.description);
 					dispTestCaseRunning("Put the focus inside textbox and scan code128 barcode with" + scannerType);
 					dispExpectedResult("Barcode data should come inside textbox with an enter at the end, no callback hash should return");
@@ -317,9 +317,9 @@ describe("Barcode Manual Test", function() {
 					_result.waitForResponse();
 				});
 	
-				it("VT200-0601 | set decodeSound to local wave file path |"+ scannerName, function() {
+				it("VT200-0601 | set decodeSound to local wave file path |"+ scantype, function() {
 					displayObjective(jasmine.getEnv().currentSpec.description);
-					dispTestCaseRunning("Scan code128 barcode with " + scannerName + " check for the wave file to play(wave file should at application/sdcard folder)");
+					dispTestCaseRunning("Scan code128 barcode with " + scantype + " check for the wave file to play(wave file should at application/sdcard folder)");
 					dispExpectedResult("wave file should play after barcode is decoded");
 					
 					_result.waitToRunTest();
@@ -354,9 +354,9 @@ describe("Barcode Manual Test", function() {
 				});
 			}
 			
-			it("VT200-0602 | call getAllProperties() without callback(Sync Access) |"+ scannerName, function() {
+			it("VT200-0602 | call getAllProperties() without callback(Sync Access) |"+ scantype, function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("Don't scan and check for all the supported propertylist for scanner" + scannerName);
+				dispTestCaseRunning("Don't scan and check for all the supported propertylist for scanner" + scantype);
 				dispExpectedResult("all the supported properties with their default value should return with Sync Access");
 				
 				_result.waitToRunTest();
@@ -380,9 +380,9 @@ describe("Barcode Manual Test", function() {
 				_result.waitForResponse();
 			});
 	
-			it("VT200-0603 | call getSupportedProperties() with async callback |"+ scannerName, function() {
+			it("VT200-0603 | call getSupportedProperties() with async callback |"+ scantype, function() {
 				displayObjective(jasmine.getEnv().currentSpec.description);
-				dispTestCaseRunning("check for all the supported propertylist for scanner" + scannerName);
+				dispTestCaseRunning("check for all the supported propertylist for scanner" + scantype);
 				dispExpectedResult("all the supported properties should return in async callback");
 				
 				_result.waitToRunTest();
