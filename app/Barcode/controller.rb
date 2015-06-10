@@ -9,12 +9,18 @@ class BarcodeController < Rho::RhoController
   
   # set scanner for tests 
   def set_scanner
-    scanner_type = @params['scanner_type']
     @obj = Rho::Barcode.enumerate
-    
-    @obj.each do |scannerObj|
-      $scanner = scannerObj if scannerObj.scannerType == scanner_type
-      #break
+
+    if @params['scanner_type']
+      @obj.each do |scannerObj|
+        $scanner = scannerObj if scannerObj.scannerType == @params['scanner_type']
+      end
+    end
+
+    if @params['scanner_name']
+      @obj.each do |scannerObj|
+        $scanner = scannerObj if scannerObj.friendlyName == @params['scanner_name']
+      end      
     end
   end
   
@@ -43,8 +49,6 @@ class BarcodeController < Rho::RhoController
   end
 
   def barcode_callback_print
-    Alert.show_popup(@params.values[1].to_json.to_s)
-    
     if @params
       @obj_array = @params.values[1]
       
@@ -83,7 +87,7 @@ class BarcodeController < Rho::RhoController
 
   
   def barcode_take
-    set_scanner
+    set_scanner @params
     if @params['default']
       Rho::Barcode.take({},url_for(:action => :barcode_callback))
     else
