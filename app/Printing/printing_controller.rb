@@ -51,7 +51,6 @@ class PrintingController < Rho::RhoController
 
   #callback function
   def printer_callback_connect
-    Alert.show_popup(@params.to_json.to_s)
     begin
       if @params['status']
         Rho::WebView.executeJavascript('Ruby.sendValueToJS("'+ @params['status'] +'")')

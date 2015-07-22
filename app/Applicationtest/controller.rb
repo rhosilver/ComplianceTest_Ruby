@@ -7,17 +7,15 @@ class ApplicationtestController < Rho::RhoController
 
 
 def minimize
-  Rho::Application.minimize()
+  Rho::Application.minimize
 end
   
 def restore
-  Rho::Application.minimize()
-  sleep 2
-  Rho::Application.restore()
+  Rho::Application.restore
 end
   
 def quit
-  Rho::Application.quit()
+  Rho::Application.quit
 end
 
 def start_original
@@ -41,7 +39,11 @@ def start_invalid
 end
 
 def set_title
-  Rho::Application.title ='MyTitle'
+  if @params['empty']
+    Rho::Application.title =''
+  else
+    Rho::Application.title ='MyTitle'
+  end
 end
 
 # callback method
@@ -51,13 +53,13 @@ end
 
 def menu_test
   Rho::Application.nativeMenu = [
-    {'label'=>'Home', 'action'=>'Home'},
-    {'label'=>'separator', 'action'=>'separator'},
-    {'label'=>'Options', 'action'=>'options'},
-    {'label'=>'Log', 'action'=>'log'},
-    {'label'=>'Exit', 'action'=>'exit'},
-    {'label'=>'Refresh', 'action'=>'refresh'}, 
-    {'label'=>'Callback', 'action'=> url_for(:action => :menu_callback)}
+    {:label=>'Home', :action=>'Home'},
+    {:label=>'separator', :action=>'separator'},
+    {:label=>'Options', :action=>'options'},
+    {:label=>'Log', :action=>'log'},
+    {:label=>'Exit', :action=>'exit'},
+    {:label=>'Refresh', :action=>'refresh'}, 
+    {:label=>'Callback', :action=> url_for(:action => :menu_callback)}
   ]
 end
 
@@ -67,31 +69,31 @@ end
 
 def menu_reservedItem
   Rho::Application.nativeMenu = [
-    {'label'=>'Options', 'action'=> 'Options'},
-    {'label'=>'Exit', 'action'=> 'exit'},
-    {'label'=>'Log', 'action'=> 'Log'},
-    {'label'=>'Refresh', 'action'=> 'Refresh'},
-    { 'label'=>'Home', 'action'=> 'Home'},
-    {'label'=>'Load a page', 'action'=> '/app/loading.html'}
+    {:label=>'Options', :action=> 'Options'},
+    {:label=>'Exit', :action=> 'exit'},
+    {:label=>'Log', :action=> 'Log'},
+    {:label=>'Refresh', :action=> 'Refresh'},
+    {:label=>'Home', :action=> 'Home'},
+    {:label=>'Load a page', :action=> '/app/loading.html'}
   ]
 end
 
 def menu_jscall
   Rho::Application.nativeMenu = [
-    {'label'=>'Log', 'action'=> 'Log'},
-    {'label'=>'fullscreen', 'action'=> 'fullscreen'},
-    {'label'=>'Exit', 'action'=>'javascript=>onQuit()'},
-    {'label'=>'separator', 'action'=> 'separator '},
-    {'label'=>'Refresh', 'action'=> 'Refresh'},
-    { 'label'=>'Home', 'action'=> 'Home'},
-    {'label'=>'Load a page', 'action'=> '/app/loading.html'}
+    {:label=>'Log', :action=> 'Log'},
+    {:label=>'fullscreen', :action=> 'fullscreen'},
+    {:label=>'Exit', :action=>'javascript=>onQuit()'},
+    {:label=>'separator', :action=> 'separator '},
+    {:label=>'Refresh', :action=> 'Refresh'},
+    { :label=>'Home', :action=> 'Home'},
+    {:label=>'Load a page', :action=> '/app/loading.html'}
   ]
 end
 
 def badlink_uri
   @data1 = Rho::Application.badLinkURI
   if @data1
-    @data = @data1.to_s
+    @data = @data1.gsub(/(?=\W)/, '\\').to_s
   else
     @data = ''
   end

@@ -18,7 +18,6 @@ class PrinterZebraController < Rho::RhoController
 
 #callback function
 def printer_callback_connect
-  Alert.show_popup(@params.to_json.to_s)
   begin
     if @params['status']
       Rho::WebView.executeJavascript('Ruby.sendValueToJS("'+ @params['status'] +'")')
@@ -108,8 +107,7 @@ def rho_printRawString
     if (rawstr == 'zpl')
       cmmd = '^XA^FO50,50^ADN,36,20^FDPrinting Zebra ZPL^FS^XZ'
     else
-      cmmd = '! 0 200 200 210 1\r\nTEXT 4 0 30 40 Printing Zebra CCPL\r\nFORM\r\nPRINT\r\n'
-      #cmmd = cmmd1.gsub(/(?=\W)/, '\\')
+      cmmd = '"! 0 200 200 210 1\r\nTEXT 4 0 30 40 Printing Zebra CCPL\r\nFORM\r\nPRINT\r\n'
     end
 
     @printer = Rho::PrinterZebra.getPrinterByID(@params['pid'])

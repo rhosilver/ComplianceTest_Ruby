@@ -20,7 +20,6 @@ end
 
 def smart_battery_status_callback
   @result = ""
-  @result += '<br/>Time Now: ' + Time.now.to_s
 	@result += '<br/>serialNumber: ' + @params['serialNumber'].to_s
 	@result += '<br/>partNumber: ' + @params['partNumber'].to_s
 	@result += '<br/>batteryChargeCycles: ' + @params['batteryChargeCycles'].to_s
@@ -41,14 +40,6 @@ end
 
 def hide_icon
   Rho::Battery.hideIcon()
-end
-
-def battery_status_default
-  Rho::Battery.batteryStatus({}, url_for(:action => :status_callback))
-end
-
-def battery_status_gen
-  Rho::Battery.batteryStatus({}, url_for(:action => :status_callback))
 end
 
 def battery_status

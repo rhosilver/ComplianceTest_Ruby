@@ -262,14 +262,14 @@ describe('Printer Zebra', function() {
             
             setTimeout(function() {
                 timeout = true;
-            }, 10000);
+            }, 5000);
         });
 
          waitsFor(function(){
             if(timeout == true){
                 return true;
             }
-        }, 'Wait for 10msec ajax call to happen', 12000);
+        }, 'Wait for 10msec ajax call to happen', 10000);
 
         runs(function() {
             displayResult("Output: ", Ruby.getReturnedValue()+"<br/>");
@@ -333,9 +333,9 @@ describe('Printer Zebra', function() {
             doConnect();
         });
 
-		xit('Search printer method with callback', function() {
+		it('Search printer method with callback', function() {
             dispTestCaseRunning("search printer method ");
-            dispExpectedResult("should search and display printer id");
+            dispExpectedResult("should search and display printer id. Wait for sometime..");
             _result.waitToRunTest();
             runs(function() {
                
@@ -663,7 +663,6 @@ describe('Printer Zebra', function() {
         });
 
     });
-
 
     describe('connect and disconnect methods', function() {
         it('disconnect and try to print should return status error', function() {
