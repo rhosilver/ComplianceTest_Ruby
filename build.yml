@@ -7,10 +7,10 @@ applog: "rholog.txt"
 app_type: "rhoelements"
 iphone:
   configuration: "Release"
-  sdk: iphoneos8.2
-  provisionprofile: 
+  sdk: iphoneos8.3
+  provisionprofile:
   codesignidentity: "iPhone Developer"
-  entitlements: 
+  entitlements: ./production/Entitlements.plist
   BundleIdentifier: "com.rhomobile.compliancetestruby"
   BundleURLScheme: "compliancetestruby"
   extensions:
